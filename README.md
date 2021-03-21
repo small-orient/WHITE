@@ -22,21 +22,23 @@ springboot+vue个人博客
 ## 快速运行  
   
 一、后端:
-
-```1.进入springboot目录-->找到sql目录下的springboot_vue.sql，在mysql数据库中建表;
+```
+1.进入springboot目录-->找到sql目录下的springboot_vue.sql，在mysql数据库中建表;
 2.springboot项目的application.properties中选择spring.profiles.active=dev，在开发环境中启动；
 3.修改对应配置文件的mysql连接信息；
-4.在IntelliJ IDEA中启动。```
+4.在IntelliJ IDEA中启动。
+```
 
 访问测试：http://localhost:8081/blog/hot ，该接口使用get请求，访问成功代表项目启动成功。或者你也可以访问任意可访问的接口进行测试。
 
 二、前端：
 确保你的运行环境能启动vue，这里的vue版本推荐3以上。
+
 ```
   1.在vue_blog目录下安装依赖：npm install
   2.启动测试：npm run dev，http://localhost:8080
 ```
- 也可以在IntelliJ IDEA中打开vue_blog，在IDEA的Terminal输入对应的命令即可。后续的开发也可以继续在IDEA中进行。
+也可以在IntelliJ IDEA中打开vue_blog，在IDEA的Terminal输入对应的命令即可。后续的开发也可以继续在IDEA中进行。
   
 ## 小结
 因为一直想做一个网站，就是好奇网站怎么做的，所以驱使我完成了white's。后续会一直维护网站，期待变得更好~
