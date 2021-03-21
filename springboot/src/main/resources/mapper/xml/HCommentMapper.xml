@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baidetu.dao.HCommentMapper">
+
+    <resultMap id="CommentResult" type="com.baidetu.entity.HComment">
+        <id property="id" column="id"/>
+        <result property="userNickName" column="userNickName"/>
+        <result property="userId" column="userId"/>
+        <result property="content" column="content"/>
+        <result property="blogId" column="blogId"/>
+        <result property="parentCommentId" column="parentCommentId"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <!--查询评论集合-->
+    <select id="listComment" resultMap="CommentResult">
+        select * from h_comment  ${ew.customSqlSegment};
+    </select>
+
+    <!--查询单条评论-->
+    <select id="findOne" resultMap="CommentResult">
+        select * from h_comment  ${ew.customSqlSegment};
+    </select>
+
+    <!--保存评论-->
+    <insert id="saveComment" parameterType="com.baidetu.entity.HComment">
+       insert into h_comment(userId,content,blogId,parentCommentId,create_time)
+       values(
+        #{userId}
+       ,#{content}
+       ,#{blogId}
+       ,#{parentCommentId}
+       ,#{createTime})
+    </insert>
+
+    <!--更新评论-->
+    <update id="updateById" parameterType="Long">
+        update  h_comment set parentCommentId=#{parentCommentId} where id = #{id}
+    </update>
+
+    <!--删除评论-->
+    <delete id="deleteById" parameterType="Long">
+        delete from h_comment where id = #{id}
+    </delete>
+
+
+</mapper>

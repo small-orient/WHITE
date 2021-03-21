@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baidetu.dao.HBlogMapper">
+
+
+    <resultMap id="blogResult" type="com.baidetu.entity.HBlog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="summary" column="summary"/>
+        <result property="content" column="content"/>
+        <result property="commentHit" column="commentHit"/>
+        <result property="clickHit" column="clickHit"/>
+        <result property="blogTypeId" column="blogTypeId"/>
+        <result property="userId" column="userId"/>
+        <result property="createSign" column="createSign"/>
+        <result property="deleted" column="deleted"/>
+        <result property="blogImg" column="blogImg"/>
+        <result property="published" column="published"/>
+        <result property="commentOpen" column="commentOpen"/>
+        <result property="appreciation" column="appreciation"/>
+        <result property="recommend" column="recommend"/>
+        <result property="shareStatement" column="shareStatement"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="selectOne" resultMap="blogResult">
+        select *
+        from h_blog blog
+        ${ew.customSqlSegment}
+    </select>
+
+    <select id="selectById" resultMap="blogResult">
+        select *
+        from h_blog blog
+        where id = #{id}
+    </select>
+
+    <select id="selectList" resultMap="blogResult">
+        select *
+        from h_blog blog
+        ${ew.customSqlSegment}
+    </select>
+</mapper>

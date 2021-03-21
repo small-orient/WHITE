@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baidetu.dao.PaginationMapper">
+
+    <resultMap id="PaginationResult" type="com.baidetu.common.dto.PaginationDto">
+        <id property="id" column="id"/>
+        <result property="nickName" column="nickName"/>
+        <result property="typeName" column="typeName"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="commentHit" column="commentHit"/>
+        <result property="clickHit" column="clickHit"/>
+        <result property="blogImg" column="blogImg"/>
+        <result property="published" column="published"/>
+        <result property="appreciation" column="appreciation"/>
+        <result property="commentOpen" column="commentOpen"/>
+        <result property="recommend" column="recommend"/>
+        <result property="likes" column="likes"/>
+        <result property="deleted" column="deleted"/>
+        <result property="shareStatement" column="shareStatement"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="summary" column="summary"/>
+    </resultMap>
+    <!--分页-->
+    <select id="page" resultMap="PaginationResult">
+        select
+        blog.id,
+        user.nickName,
+        blogtype.typeName,
+        blog.title,
+        blog.create_time,
+        blog.update_time,
+        blog.summary,
+        blog.blogImg,
+        blog.clickHit,
+        blog.commentHit,
+        blog.published,
+        blog.commentOpen,
+        blog.appreciation,
+        blog.recommend,
+        blog.content,
+        blog.likes,
+        blog.deleted,
+        blog.shareStatement
+        from h_blog blog
+        INNER JOIN h_user user
+        ON blog.`userId`=user.`id`
+        INNER JOIN h_blogtype blogtype
+        ON blog.`blogTypeId`=blogtype.`id`
+        ${ew.customSqlSegment}
+
+    </select>
+
+    <!--查询博客集合-->
+    <select id="selectByList" resultMap="PaginationResult">
+        select
+        blog.id,
+        user.nickName,
+        blogtype.typeName,
+        blog.title,
+        blog.create_time,
+        blog.update_time,
+        blog.summary,
+        blog.blogImg,
+        blog.clickHit,
+        blog.commentHit,
+        blog.published,
+        blog.commentOpen,
+        blog.appreciation,
+        blog.recommend,
+        blog.content,
+        blog.likes,
+        blog.shareStatement
+        from h_blog blog
+        INNER JOIN h_user user
+        ON blog.`userId`=user.`id`
+        INNER JOIN h_blogtype blogtype
+        ON blog.`blogTypeId`=blogtype.`id`
+        ${ew.customSqlSegment}
+    </select>
+
+    <!--查询单个博客-->
+    <select id="selectByOne" resultMap="PaginationResult">
+        select
+        blog.id,
+        user.nickName,
+        blogtype.typeName,
+        blog.title,
+        blog.create_time,
+        blog.update_time,
+        blog.summary,
+        blog.blogImg,
+        blog.clickHit,
+        blog.likes,
+        blog.commentHit,
+        blog.published,
+        blog.commentOpen,
+        blog.appreciation,
+        blog.recommend,
+        blog.content,
+        blog.shareStatement
+        from h_blog blog
+        INNER JOIN h_user user
+        ON blog.`userId`=user.`id`
+        INNER JOIN h_blogtype blogtype
+        ON blog.`blogTypeId`=blogtype.`id`
+        ${ew.customSqlSegment}
+    </select>
+    <!--根据id查询博客-->
+    <select id="getById" parameterType="Long" resultMap="PaginationResult">
+        select
+        blog.id,
+        user.nickName,
+        blogtype.typeName,
+        blog.title,
+        blog.create_time,
+        blog.update_time,
+        blog.summary,
+        blog.blogImg,
+        blog.likes,
+        blog.clickHit,
+        blog.commentHit,
+        blog.published,
+        blog.commentOpen,
+        blog.appreciation,
+        blog.recommend,
+        blog.content,
+        blog.deleted,
+        blog.shareStatement
+        from h_blog blog
+        INNER JOIN h_user user
+        ON blog.`userId`=user.`id`
+        INNER JOIN h_blogtype blogtype
+        ON blog.`blogTypeId`=blogtype.`id`
+        where blog.id = #{blogId}
+    </select>
+
+    <!--获取博客所属年份集合-->
+    <select id="findGroupByYear" resultType="String">
+        SELECT DATE_FORMAT(blog.create_time,'%Y') AS `year`
+        FROM h_blog blog
+        GROUP BY `year`
+        ORDER BY `year` DESC
+    </select>
+
+    <!--按照年份获取博客集合-->
+    <select id="findByYear" resultMap="PaginationResult" parameterType="String">
+        SELECT *
+        FROM h_blog blog
+        INNER JOIN h_user `user`
+        ON blog.`userId`=user.`id`
+        INNER JOIN h_blogtype blogtype
+        ON blog.`blogTypeId`=blogtype.`id`
+        WHERE DATE_FORMAT(blog.create_time,'%Y') = #{createTime}
+    </select>
+
+    <!--还原删除的博客-->
+    <update id="revert" parameterType="Long">
+        update h_blog set deleted = 0 where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="Long">
+         delete from h_blog where id = #{id}
+    </delete>
+
+</mapper>

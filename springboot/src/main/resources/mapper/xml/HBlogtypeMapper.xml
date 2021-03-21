@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baidetu.dao.HBlogtypeMapper">
+
+    <!--<select id="getBlogCount" parameterType="String" resultType="Integer">
+        SELECT
+        COUNT(1)
+        FROM h_blogtype blogtype
+        LEFT JOIN h_blog blog
+        ON blogtype.`id` = blog.`blogTypeId`
+        ${ew.customSqlSegment}
+    </select>
+-->
+</mapper>
+
