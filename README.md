@@ -4,7 +4,14 @@ springboot+vue个人博客
 项目地址：https://www.baidetu.cn/#/fblog
 
 ## 介绍 
-基于前后端分离，通过配置跨域将axios请求转发到后端。前端页面分为：back_page、front_page，back_page作为后台管理页面，front_page作为前台显示页面。其中front_page是我自己结合ElementUI编写，back_page使用了模板**vue-element-admin**，该模板对应地址：https://panjiachen.gitee.io/vue-element-admin/。
+```
+1. 基于前后端分离，通过配置跨域将axios请求转发到后端。
+2. 登录使用验证使用shiro配合jwt生成token验证。
+3. 利用redis作为数据缓存与缓存计数器。
+4. aop+自定义注解防止恶意调用接口。
+5. 前端页面分为：back_page、front_page，back_page作为后台管理页面，front_page作为前台显示页面。其中front_page是我自己结合ElementUI编写，back_page使用了模板**vue-element-admin**，该模板对应地址：https://panjiachen.gitee.io/vue-element-admin/。
+
+```
 
 ## 后端框架
 1.springboot
