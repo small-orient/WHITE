@@ -325,16 +325,15 @@
                         g_this.comment.blogId = 0;
                         g_this.comment.parentCommentId = g_this.commentId;
                         //储存
-                        g_this.axios.post("/comment/save", g_this.comment, {
+                        g_this.axios.post("/message/saveLeaveMessage", g_this.comment, {
                             headers: {
                                 "Authorization": localStorage.getItem("token")
                             }
                         }).then(res => {
-
                             g_this.$message.success('回复成功');
                             g_this.replyData = ''
                             g_this.commentData();
-                            this.replyBox = false;
+                            g_this.replyBox = false;
                         })
                     }else {
                         this.$message({

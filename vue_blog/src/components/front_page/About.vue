@@ -95,7 +95,7 @@
                                     class="iconfont icon-liuyan4"
                                     style="font-size: 30px;padding-left:10px"
                                     :underline="false"
-                                    onclick="goToWall"
+                                    @click="goToWall()"
                             ></el-link>
                         </el-tooltip>
                     </div>

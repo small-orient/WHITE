@@ -12,9 +12,9 @@
         <el-card style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         background-color:rgba(0, 0, 0, 0.1);margin: 0 8%"
                  class="blog-card animated fadeInLeft">
-            <span style="color: #067271">
+            <span style="color: #f5f8f8">
                 <i class="iconfont icon-laba" style="font-size: 25px;"></i>
-                : 网站即将开源至GitHub~~</span>
+                : 网站已开源至GitHub，感兴趣的朋友可以了解~~</span>
         </el-card>
         <el-row :gutter="10" >
             <el-col  :xs="24" :sm="24" :md="16" :lg="16" :xl="16">
@@ -155,7 +155,7 @@
                                             class="iconfont icon-liuyan4"
                                             style="font-size: 30px;padding-left:10px"
                                             :underline="false"
-                                            onclick="toWall"
+                                            @click="toWall()"
                                     ></el-link>
                                 </el-tooltip>
                             </div>
