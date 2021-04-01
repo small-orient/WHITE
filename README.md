@@ -14,11 +14,11 @@ springboot+vue个人博客
 ```
 
 ## 后端框架
-1.springboot
-2.MybatisPlus
+1.springboot2.2.10.RELEASE
+2.MybatisPlus3.0.7
 3.shiro+JWT
 4.redis
-5.MySQL
+5.MySQL5.7
 
 ## 前端框架
 1.vue
