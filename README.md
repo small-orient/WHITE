@@ -43,7 +43,7 @@ springboot+vue个人博客
 
 ```
   1.在vue_blog目录下安装依赖：npm install
-  2.启动测试：npm run dev，http://localhost:8080
+  2.启动测试：npm run dev -->然后浏览器输入http://localhost:8080
 ```
 也可以在IntelliJ IDEA中打开vue_blog，在IDEA的Terminal输入对应的命令即可。后续的开发也可以继续在IDEA中进行。
   
