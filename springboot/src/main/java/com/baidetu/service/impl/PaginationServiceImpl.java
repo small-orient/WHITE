@@ -102,7 +102,7 @@ public class PaginationServiceImpl
         for (String year : years
         ) {
             if (year != null)
-                //构建成年份-->所属年份博客集合的一个map
+                //构建成年份=博客集合的一个map
                 map.put(year, paginationMapper.findByYear(year));
         }
         return map;
@@ -125,14 +125,14 @@ public class PaginationServiceImpl
     //将点赞数从redis+1
     @Override
     public Result addLikeForRedis(Long blogId) {
-        /*Jedis jedis = new Jedis();*/
+/*        Jedis jedis = new Jedis();
         //查询redis
-        /*String likeByBlog = jedis.get(Long.toString(blogId));*/
+        String likeByBlog = jedis.get(Long.toString(blogId));*/
         String likeByBlog = Objects.requireNonNull(redisTemplate.opsForValue().get(Long.toString(blogId))).toString();
         if (likeByBlog != null && !likeByBlog.equals("0")) {
             //有，则+1
             long like = Long.parseLong(likeByBlog) + 1;
-            /*jedis.set(Long.toString(blogId), Long.toString(like));*/
+           /* jedis.set(Long.toString(blogId), Long.toString(like));*/
             redisTemplate.opsForValue().set(Long.toString(blogId), Long.toString(like));
         } else {
             //无，设置值，+1
@@ -153,9 +153,9 @@ public class PaginationServiceImpl
     //将点赞数从redis-1
     @Override
     public Result removeLikeForRedis(Long blogId) {
-        /*Jedis jedis = new Jedis();*/
+       /* Jedis jedis = new Jedis();
         //查询redis
-        /*String likeByBlog = jedis.get(Long.toString(blogId));*/
+        String likeByBlog = jedis.get(Long.toString(blogId));*/
         String likeByBlog = Objects.requireNonNull(redisTemplate.opsForValue().get(Long.toString(blogId))).toString();
         if (likeByBlog != null && !likeByBlog.equals("0")) {
             //有，则-1
@@ -189,7 +189,7 @@ public class PaginationServiceImpl
         //遍历储存key的集合
         for (String blogId : likeSet) {
             /*String like = jedis.get(blogId);*/
-            String like = (String) redisTemplate.opsForValue().get(blogId);
+            String like = Objects.requireNonNull(redisTemplate.opsForValue().get(blogId)).toString();
             System.out.println("--储存方法：此时redis储存点赞数为:" + like);
             if (like != null && !like.equals("0")) {
                 //redis存有该博客的点赞数，那么进行更新
@@ -203,6 +203,7 @@ public class PaginationServiceImpl
                 /*jedis.set(blogId, "0");*/
                 redisTemplate.opsForValue().set(blogId, "0");
                 System.out.println("---储存方法：清除redis缓存点赞数" + like + "-->" + redisTemplate.opsForValue().get(blogId));
+                /*System.out.println("---储存方法：清除redis缓存点赞数" + like + "-->" + jedis.get(blogId));*/
             }
             //为空就不更新
         }

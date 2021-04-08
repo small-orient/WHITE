@@ -27,7 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.*;
+import java.util.List;
 
 /**
  * <p>
@@ -172,7 +172,6 @@ public class HBlogServiceImpl extends ServiceImpl<HBlogMapper, HBlog>
         System.out.println("--------------typeName:"+typeName);
         System.out.println("--------------title:"+title);*/
 
-
         String decodeTitle = null; //解析标题编码标识
         try {
             //有值并且不为空则转码
@@ -206,7 +205,6 @@ public class HBlogServiceImpl extends ServiceImpl<HBlogMapper, HBlog>
             List<PaginationDto> paginationDtoList = KeywordUtils.addKeyWord(pageData);
             //重新设置博客分页对象
             pageData.setRecords(paginationDtoList);
-
         } else if (NotNullUtils.String(decodeTitle)) {
             //有title值带参查询
             if (deleted == 0) {
@@ -320,7 +318,7 @@ public class HBlogServiceImpl extends ServiceImpl<HBlogMapper, HBlog>
                                        换成redisTemplate.delete(key)即可 .
 
                3.前端不能翻页。翻页失效，这就很头疼了，所以必须暂时的舍弃。
-
+                    解决：将页数也同时缓存，非本页数据需要重新查询数据库。
                综上暂且不用。
 
 
