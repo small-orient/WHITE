@@ -125,10 +125,14 @@ public class PaginationServiceImpl
     //将点赞数从redis+1
     @Override
     public Result addLikeForRedis(Long blogId) {
-/*        Jedis jedis = new Jedis();
+        /* Jedis jedis = new Jedis();
         //查询redis
         String likeByBlog = jedis.get(Long.toString(blogId));*/
-        String likeByBlog = Objects.requireNonNull(redisTemplate.opsForValue().get(Long.toString(blogId))).toString();
+        Object o = redisTemplate.opsForValue().get(Long.toString(blogId));
+        String likeByBlog = null;
+        if (o!=null){
+            likeByBlog = Objects.requireNonNull(o).toString();
+        }
         if (likeByBlog != null && !likeByBlog.equals("0")) {
             //有，则+1
             long like = Long.parseLong(likeByBlog) + 1;

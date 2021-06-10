@@ -466,7 +466,6 @@
                                 "Authorization": localStorage.getItem("token")
                             }
                         }).then(res => {
-
                             g_this.$message.success('回复成功');
                             g_this.replyData = ''
                             g_this.commentData();
@@ -490,7 +489,8 @@
                     /*console.log(res+"博客评论信息回显------------------")*/
                     g_this.commentList = res.data.data;
                    /* g_this.myHeader = 'https://localhost:8081'+g_this.$store.getters.getUser.avatar*/
-                    g_this.myHeader = 'https://www.blog.baidetu.cn'+g_this.$store.getters.getUser.avatar
+                    //g_this.myHeader = 'https://www.blog.baidetu.cn'+g_this.$store.getters.getUser.avatar
+                    g_this.myHeader = g_this.$store.getters.getAddress+g_this.$store.getters.getUser.avatar
                 })
             },
             //博客点赞+1
@@ -530,6 +530,7 @@
         created() {
             /*博客内容*/
             const blogId = this.$route.params.blogId
+            console.log(blogId);
             const g_this = this;
             this.axios.get('/blog/detail/'+blogId).then(res =>{
                 const blog = res.data.data;

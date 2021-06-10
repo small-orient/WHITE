@@ -28,7 +28,7 @@
                                         <el-col :span="4">
                                             <div class="grid-content ">
                                                 <el-image
-                                                        :src="'https://www.blog.baidetu.cn'+blog.blogImg"
+                                                        :src="$store.getters.getAddress+blog.blogImg"
                                                         style="max-width: 100px; max-height: 100px;;min-width: 50px;min-height: 50px"
                                                         fit="fill"
                                                         v-show="imgDisplay">

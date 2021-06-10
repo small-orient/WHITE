@@ -360,7 +360,7 @@
                    /* console.log(res+"留言墙评论信息回显------------------")*/
                     g_this.commentList = res.data.data;
                     /*g_this.myHeader = "http://118.178.188.20:9707/"+g_this.$store.getters.getUser.avatar*/
-                    g_this.myHeader = "https://www.blog.baidetu.cn/"+g_this.$store.getters.getUser.avatar
+                    g_this.myHeader = g_this.$store.getters.getAddress+g_this.$store.getters.getUser.avatar
                 })
             },
         },

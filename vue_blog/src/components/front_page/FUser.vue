@@ -146,7 +146,7 @@
                     }).then((res) => {
                         console.log("文件上传返回：上传图片成功"+res)
                         //图片显示的路径
-                        g_this.userAvatar="https://www.blog.baidetu.cn/"+res.data.data;
+                        g_this.userAvatar=g_this.$store.getters.getAddress+res.data.data;
                         //刷新页面
                         g_this.$router.push('/user');
                         this.$message.success('头像已更换');

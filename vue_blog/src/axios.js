@@ -11,7 +11,6 @@ axios.defaults.baseURL = "http://localhost:8081";
 
 //前置拦截
 axios.interceptors.request.use(config => {
-
     return config;
 });
 //后置拦截

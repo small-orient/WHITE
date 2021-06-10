@@ -8,7 +8,9 @@ export default new Vuex.Store({
     state: {
         token: '',
         //4.可以给userInfo一个初始化值，从sessionStorage里面拿,token也可以，但先不写了
-        userInfo: JSON.parse(sessionStorage.getItem("userInfo"))
+        userInfo: JSON.parse(sessionStorage.getItem("userInfo")),
+        address:'http://localhost:8081/',
+        //address:'https://www.blog.baidetu.cn/',
     },
     mutations: {
         //相当于set方法
@@ -35,16 +37,23 @@ export default new Vuex.Store({
             //浏览器数据也要清空
             localStorage.setItem("token", '');
             sessionStorage.setItem("userInfo", JSON.stringify(""));
-
-
-        }
+        },
+        //前端保存全局访问变量
+        // SAVE_ADDRESS:(state,address)=>{
+        //     state.address = address;
+        // }
     },
     getters: {
         //相当于get方法
         //5.获取用户信息,其实其他组件通过state.token这种方法也可以直接获取信息的
         getUser: state => {
             return state.userInfo;
-        }
+        },
+        //获取访问地址
+        getAddress: state => {
+            return state.address;
+        },
+
     },
 
     actions: {},

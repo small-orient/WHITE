@@ -279,7 +279,7 @@ export default {
                     }).then((res) => {
                         console.log("文件上传返回：上传图片成功"+res)
                         //图片显示的路径
-                        g_this.imgView="https://www.blog.baidetu.cn/"+res.data.data;
+                        g_this.imgView=g_this.$store.getters.getAddress+res.data.data;
                         //返回需要在数据库储存的相对路径
                         g_this.ruleForm.blogImg=res.data.data;
                         console.log(res.data.data)
@@ -298,7 +298,7 @@ export default {
                 let g_this = this;
                 let uri = encodeURI(g_this.ruleForm.blogImg);
                 console.log(file+'移除的图片--------');
-                this.axios.post("https://www.blog.baidetu.cn/blog/deleteBlogImg", uri,
+                this.axios.post("/blog/deleteBlogImg", uri,
                     {
                     headers:{
                         "Authorization":localStorage.getItem("token"),
@@ -365,7 +365,7 @@ export default {
                     g_this.ruleForm.typeName = blog.typeName;
                     g_this.ruleForm.keyword = blog.keyword;
                     g_this.ruleForm.createSign = blog.createSign;
-                    g_this.imgView= "https://www.blog.baidetu.cn/"+blog.blogImg;
+                    g_this.imgView= g_this.$store.getters.getAddress+blog.blogImg;
                     g_this.ruleForm.blogImg= blog.blogImg;
                     //回显获取作者选择状态情况
                     if (blog.recommend === 0){
