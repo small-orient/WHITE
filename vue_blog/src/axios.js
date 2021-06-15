@@ -6,8 +6,8 @@ import router from './router';
 /*axios配置前后拦截处理*/
 
 //拦截请求路径
-//axios.defaults.baseURL = "https://www.blog.baidetu.cn";
-axios.defaults.baseURL = "http://localhost:8081";
+axios.defaults.baseURL = "https://www.blog.baidetu.cn";
+//axios.defaults.baseURL = "http://localhost:8081";
 
 //前置拦截
 axios.interceptors.request.use(config => {

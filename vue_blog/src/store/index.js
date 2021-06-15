@@ -9,8 +9,8 @@ export default new Vuex.Store({
         token: '',
         //4.可以给userInfo一个初始化值，从sessionStorage里面拿,token也可以，但先不写了
         userInfo: JSON.parse(sessionStorage.getItem("userInfo")),
-        address:'http://localhost:8081/',
-        //address:'https://www.blog.baidetu.cn/',
+        //address:'http://localhost:8081/',
+        address:'https://www.blog.baidetu.cn/',
     },
     mutations: {
         //相当于set方法
