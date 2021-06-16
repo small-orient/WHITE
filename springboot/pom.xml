@@ -131,7 +131,6 @@
             <artifactId>lettuce-core</artifactId>
             <version>5.1.8.RELEASE</version>
         </dependency>
-
     </dependencies>
 
     <build>
